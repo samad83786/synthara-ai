@@ -1,7 +1,7 @@
 import os
 
-ORCHESTRATOR_MODEL = os.environ.get("SYNTHARA_ORCHESTRATOR_MODEL", "qwen3:latest")
-WORKER_MODEL = os.environ.get("SYNTHARA_WORKER_MODEL", "qwen3:latest")
+ORCHESTRATOR_MODEL = os.environ.get("SYNTHARA_ORCHESTRATOR_MODEL", "qwen3:4b")
+WORKER_MODEL = os.environ.get("SYNTHARA_WORKER_MODEL", "qwen3:4b")
 AGENTS_DIR = os.environ.get("SYNTHARA_AGENTS_DIR", "workspace")
 DATABASE_URL = os.environ.get("SYNTHARA_DATABASE_URL", "sqlite:///synthara.db")
 SECRET_KEY = os.environ.get("SYNTHARA_SECRET_KEY", "change-me-in-production")
