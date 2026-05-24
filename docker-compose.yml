@@ -1,0 +1,40 @@
+version: '3.8'
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - SYNTHARA_ORCHESTRATOR_MODEL=${SYNTHARA_ORCHESTRATOR_MODEL:-qwen3:latest}
+      - SYNTHARA_WORKER_MODEL=${SYNTHARA_WORKER_MODEL:-qwen3:latest}
+      - SYNTHARA_SECRET_KEY=${SYNTHARA_SECRET_KEY:-change-me}
+      - SYNTHARA_API_KEY=${SYNTHARA_API_KEY:-sk-synthara-dev}
+      - SYNTHARA_WALLET=${SYNTHARA_WALLET:-}
+      - OLLAMA_URL=${OLLAMA_URL:-http://host.docker.internal:11434}
+    volumes:
+      - ./backend:/app
+      - synthara_data:/app/data
+    depends_on:
+      - ollama
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+
+  ollama:
+    image: ollama/ollama:latest
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+
+volumes:
+  synthara_data:
+  ollama_data:
