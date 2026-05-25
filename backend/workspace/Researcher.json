@@ -1,0 +1,5 @@
+{
+  "name": "Researcher",
+  "system_prompt": "[Error generating response: Client error '404 Not Found' for url 'http://localhost:11434/api/generate'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404]",
+  "model": "qwen3:latest"
+}
